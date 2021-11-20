@@ -1,0 +1,33 @@
+{
+   "compilerOptions": {
+      "rootDir": "./",
+      "outDir": "./dist",
+      "baseUrl": ".",
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "allowJs": false,
+      "resolveJsonModule": true,
+      "strict": true,
+      "pretty": true,
+      "target": "es2017",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "skipLibCheck": true,
+      "typeRoots": ["node_modules/@types"],
+      "lib": ["es5", "es6"],
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "strictPropertyInitialization": false,
+      "paths": {
+         "*": [
+            "node_modules/*"
+         ]
+      }
+   },
+   "include": ["package.json", "src/**/*.ts", "test/**/*.ts"],
+   "exclude": ["node_modules"]
+}

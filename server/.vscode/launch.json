@@ -1,0 +1,51 @@
+{
+  "version": "0.2.0",
+  "configurations": [{
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Local Debug Program",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/web.ts",
+      "preLaunchTask": "${defaultBuildTask}",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "WEBPACK_PORT": "9000",
+        "--max-http-header-size": "1638"
+      },
+      "outputCapture": "std"
+    },
+    {
+      "name": "Attach",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run AVA test",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ava",
+      "runtimeArgs": [
+        "dist/test/**/${fileBasenameNoExtension}.test.js"
+      ],
+      "args": [
+        "--serial",
+        "${file}"
+      ],
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Current Opened File",
+      "program": "${file}",
+      "outputCapture": "std"
+    }
+  ]
+}
