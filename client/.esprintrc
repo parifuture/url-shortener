@@ -1,0 +1,10 @@
+{
+  "paths": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "ignored": [
+    "**/node_modules/**/*"
+  ],
+  "node_modules_path": "../node_modules"
+}

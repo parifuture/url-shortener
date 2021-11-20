@@ -60,7 +60,7 @@
       "mathjs": "10.0.0",
       "pg": "^8.7.1",
       "reflect-metadata": "0.1.10",
-      "sqlite3": "4.1.1",
+      "sqlite3": "^4.1.1",
       "typeorm": "0.2.38"
    },
    "ava": {
