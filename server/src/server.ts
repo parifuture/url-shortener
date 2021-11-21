@@ -11,8 +11,8 @@ async function initServer(): Promise<void> {
     process.exit(1);
   }
   // start the server
-  app.listen(3000, (): void => {
-    console.log('Server listening on port: 3000');
+  app.listen(9000, (): void => {
+    console.log('Server listening on port: 9000');
   });
 }
 

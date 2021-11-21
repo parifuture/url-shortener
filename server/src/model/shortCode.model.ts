@@ -31,9 +31,14 @@ export async function getAllUrls(limit = 10, offset = 0): Promise<ShortCode[]> {
     .getMany();
 }
 
-export async function deactivateShortCode(shortCode: string): Promise<void> {
+export async function getTotalCount() {
   const shortCodes = await getRepository();
-  await shortCodes.createQueryBuilder().update().set({ active: false }).where({ shortCode }).execute();
+  return shortCodes.count({ where: { active: true } });
+}
+
+export async function deactivateShortCodeById(id: string): Promise<void> {
+  const shortCodes = await getRepository();
+  await shortCodes.createQueryBuilder().update().set({ active: false }).where({ id }).execute();
 }
 
 function getRepository() {

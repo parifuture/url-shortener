@@ -6,8 +6,8 @@ export const PostCreateShortUrlBodySchema = Joi.object({
 }).unknown(false);
 
 export const GetShortCodesQuerySchema = Joi.object({
-  offset: Joi.number().integer().min(0).required(),
-  limit: Joi.number().integer().min(0).required(),
+  pageIndex: Joi.number().integer().min(0).required(),
+  pageSize: Joi.number().integer().min(0).required(),
 }).unknown(false);
 
 export const ShortCodeIdParamsSchema = Joi.object({

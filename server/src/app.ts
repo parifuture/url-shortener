@@ -1,7 +1,8 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import { errorMiddleware } from './middleware/errorMiddleware';
+import * as cors from 'cors';
 
+import { errorMiddleware } from './middleware/errorMiddleware';
 import { addRouting } from './routes';
 import { wrapAsync } from './utils/utils';
 
@@ -10,6 +11,8 @@ export function createApp(): express.Express {
 
   app.use(bodyParser.json({ limit: '10mb' }));
   app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
+  app.use(cors());
   /* -------  Routes that require authentication ------ */
   // app.use(authMiddleware)
 
