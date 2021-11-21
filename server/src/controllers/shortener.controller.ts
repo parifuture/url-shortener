@@ -17,18 +17,29 @@ export async function createShortCodeForUrl(longUrl: string): Promise<ShortCode>
 }
 
 export interface GetShorttUrlsOptions {
-  limit?: number;
-  offset?: number;
+  pageSize: number;
+  pageIndex: number;
 }
 
-export async function getShortCodes(opts?: GetShorttUrlsOptions) {
-  console.log('info::shortenerController:getShortCodes');
-  const fetchedData = await shortCodeModel.getAllUrls(opts?.limit, opts?.offset);
+export async function getShortCodes(opts: GetShorttUrlsOptions) {
+  console.log(`info::shortenerController:getShortCodes with options: ${JSON.stringify(opts)}`);
+  const { pageSize, pageIndex } = opts;
+
+  const offset = pageSize * pageIndex;
+  const [fetchedData, totalCount] = await Promise.all([
+    shortCodeModel.getAllUrls(pageSize, offset),
+    shortCodeModel.getTotalCount(),
+  ]);
+
+  const pageCount = Math.ceil(totalCount / (opts?.pageSize || 10));
+  // we will need to convert the fetchedData to a valid reactTable json object
+  // example looks like:
+  // { "pageIndex": 2, "pageSize": 10, "pageCount": 10000, "canNextPage": true, "canPreviousPage": true }
   const result = {
-    limit: 10,
-    offset: 0,
+    pageSize,
+    pageIndex: pageIndex + 1,
     data: fetchedData,
-    ...opts,
+    pageCount,
   };
   return result;
 }
@@ -45,5 +56,5 @@ export async function fetchUrl(shortCode: string): Promise<string> {
 // performs a soft delete of the shortcode
 export async function deleteUrl(shortCode: string): Promise<void> {
   console.log('info::shortenerController:deleteUrl');
-  await shortCodeModel.deactivateShortCode(shortCode);
+  await shortCodeModel.deactivateShortCodeById(shortCode);
 }

@@ -14,7 +14,7 @@ export const createConnectionConfig = (): ConnectionOptions => {
       entitiesDir: 'src/entities',
       migrationsDir: 'src/migrations',
     },
-    logging: ['warn', 'error'],
+    logging: ['warn', 'error', 'query'],
     synchronize: true,
   };
   return coreOptions;
