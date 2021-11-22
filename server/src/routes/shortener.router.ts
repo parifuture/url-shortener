@@ -45,7 +45,7 @@ ROUTER.get(
   }),
   wrapAsync(
     async (req: Request, res: Response): Promise<void> => {
-      const query = req.query as shortenerController.GetShorttUrlsOptions;
+      const query = (req.query as unknown) as shortenerController.GetShorttUrlsOptions;
 
       const fetchedUrl = await shortenerController.getShortCodes(query);
       res.status(200).send(fetchedUrl);

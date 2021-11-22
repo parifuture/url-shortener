@@ -3,7 +3,7 @@ import * as shortCodeModel from '../model/shortCode.model';
 import { intToRadix64 } from '../utils/math';
 
 export async function createShortCodeForUrl(longUrl: string): Promise<ShortCode> {
-  const randomCode = Math.floor(Math.random() * 9999999);
+  const randomCode = Math.floor(Math.random() * 99999999999);
   const shortCode = intToRadix64(randomCode);
 
   // check if shortcode already exists in db
