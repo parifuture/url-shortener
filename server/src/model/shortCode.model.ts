@@ -28,6 +28,7 @@ export async function getAllUrls(limit = 10, offset = 0): Promise<ShortCode[]> {
     .where('active = :active', { active: true })
     .limit(limit)
     .offset(offset)
+    .orderBy('createdAt', 'DESC')
     .getMany();
 }
 
