@@ -1,0 +1,13 @@
+{
+  "name": "parik-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

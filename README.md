@@ -1,5 +1,22 @@
 # URL Shortener Assignment
 
+## Build Application
+To build the application, run the following command:
+```bash
+npm run docker:build
+npm run docker:up
+```
+Once the application is running, you can test it by visiting the following URL:
+```bash
+http://localhost:3000
+```
+
+# Important Notes
+- No test coverage is provided.
+- We can flip the application to use any relational database (Postgres, mysql, Aurora or GCP).
+- The UI is pretty barebones and is not meant to be a production-ready application.
+- console.log should be replaced with something like winston or a logger.
+
 ### Problem Statement
 
 Please create a URL shortener application that can has to do the following:
