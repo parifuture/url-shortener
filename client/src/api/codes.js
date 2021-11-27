@@ -17,6 +17,11 @@ export const deleteCode = async (id) => {
   return response.data;
 };
 
+export const generateUrlForVisit = (id) => {
+  const url = `${BASE_URL}/api/shortener/${id}`;
+  return url;
+};
+
 export const createNewCode = async (url) => {
   const body = {
     url,

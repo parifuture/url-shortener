@@ -20,14 +20,42 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
-import DeleteIcon from "@mui/icons-material/Delete";
+import Link from "@mui/material/Link";
+import { styled } from "@mui/material/styles";
 
-import { getAllCodes, deleteCode } from "../../api/codes";
+import { getAllCodes, generateUrlForVisit, deleteCode } from "../../api/codes";
 import { FormDialog } from "../FormDialog";
 
 export const URLTable = () => {
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [pageCount, setPageCount] = React.useState(0);
+  const [formDialogState, setFormDialogState] = React.useState(false);
+
   const handleDelete = async (someId) => {
     await deleteCode(someId.row.original.actions);
+    fetchData({ pageIndex, pageSize });
+  };
+
+  const handleVisit = async (rowData) => {
+    const shortCode = rowData.row.original.shortCode;
+    const url = generateUrlForVisit(shortCode);
+    window.open(url, "_blank").focus();
+  };
+
+  const handleFormDialogClickOpen = () => {
+    setFormDialogState(true);
+  };
+
+  const handleFormDialogClickClose = () => {
+    setFormDialogState(false);
   };
 
   const columns = React.useMemo(
@@ -48,32 +76,27 @@ export const URLTable = () => {
         Header: "Actions",
         accessor: "actions",
         Cell: ({ cell }) => (
-          <Button
-            onClick={() => handleDelete(cell)}
-            variant="contained"
-            startIcon={<DeleteIcon />}
-            color="error"
-          >
-            Delete
-          </Button>
+          <Stack direction="row" spacing={1}>
+            <Button
+              onClick={() => handleVisit(cell)}
+              variant="contained"
+              color="primary"
+            >
+              Visit
+            </Button>
+            <Button
+              onClick={() => handleDelete(cell)}
+              variant="contained"
+              color="error"
+            >
+              Delete
+            </Button>
+          </Stack>
         ),
       },
     ],
     []
   );
-
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(0);
-  const [formDialogState, setFormDialogState] = React.useState(false);
-
-  const handleFormDialogClickOpen = () => {
-    setFormDialogState(true);
-  };
-
-  const handleFormDialogClickClose = () => {
-    setFormDialogState(false);
-  };
 
   const processData = (data) => {
     const processedData = data.map((item) => {

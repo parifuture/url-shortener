@@ -1,11 +1,14 @@
 import React from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
 import { URLTable } from "../URLTable";
 
@@ -25,29 +28,44 @@ const theme = createTheme({
 export function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", minHeight: "100vh" }}>
-        <CssBaseline />
-        {/* main content contaier */}
-        <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          {/* blank header */}
-          <AppBar position="static"></AppBar>
-          <Box
-            component="main"
-            sx={{ display: "flex", flex: 1, py: 6, px: 4, bgcolor: "#eaeff1" }}
-          >
-            <Grid container justifyContent="center" alignItems="center">
-              <Grid item>
-                <h2>URL Shortner</h2>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper>
-                  <URLTable />
-                </Paper>
-              </Grid>
-            </Grid>
-          </Box>
+      <CssBaseline />
+      <AppBar position="relative">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            URL Shortner
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        {/* Hero unit */}
+        <Box
+          sx={{
+            bgcolor: "background.paper",
+            pt: 8,
+            pb: 0,
+          }}
+        >
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h4"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              URL Shortner
+            </Typography>
+          </Container>
         </Box>
-      </Box>
+        {/* End hero unit */}
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Paper>
+              <URLTable />
+            </Paper>
+          </Grid>
+        </Grid>
+      </main>
     </ThemeProvider>
   );
 }

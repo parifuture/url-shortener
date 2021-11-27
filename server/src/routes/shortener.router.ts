@@ -33,7 +33,8 @@ ROUTER.get(
       const shortCode = req.params.id;
 
       const fetchedUrl = await shortenerController.fetchUrl(shortCode);
-      res.redirect(fetchedUrl);
+      // res.redirect(fetchedUrl);
+      res.status(302).send(fetchedUrl);
     },
   ),
 );

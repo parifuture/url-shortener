@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:16.13.0
 
 RUN apt update && apt install -y apt-transport-https ca-certificates python g++
 
