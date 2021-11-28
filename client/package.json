@@ -20,12 +20,7 @@
     "react-scripts": "3.0.1",
     "react-table": "^7.7.0"
   },
-  "devDependencies": {
-    "babel-eslint": "10.0.1",
-    "eslint": "^8.3.0",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-react": "^7.27.1"
-  },
+  "devDependencies": {},
   "browserslist": {
     "production": [
       ">0.2%",
