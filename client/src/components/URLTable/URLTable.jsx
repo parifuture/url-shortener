@@ -46,7 +46,8 @@ export const URLTable = () => {
 
   const handleVisit = async (rowData) => {
     const shortCode = rowData.row.original.shortCode;
-    const url = generateUrlForVisit(shortCode);
+    const url = await generateUrlForVisit(shortCode);
+    console.log(url);
     window.open(url, "_blank").focus();
   };
 
